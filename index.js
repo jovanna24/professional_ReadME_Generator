@@ -53,6 +53,18 @@ const promptDev = () => {
             message: 'If you have written tests for your application, please provide them here.',
 
         },
+        {
+            type: 'input', 
+            name: 'githubname',  
+            message: 'What is your GitHub username?',
+
+        },
+        {
+            type: 'input', 
+            name: 'email',  
+            message: 'What is your email address?',
+
+        },
     ]);
 };
 
