@@ -75,6 +75,15 @@ const generateREADME = (answers) => {
 
     # ${answers.title} 
 
+    ## Table of Contents 
+    - [Description](#description) 
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Contribution](#contribution)
+    - [Tests](#tests)
+    - [License](#license)
+    - [Questions](#questions)
+
     ## Description 
     ${answers.description} 
 
