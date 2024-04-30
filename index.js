@@ -84,25 +84,25 @@ const generateREADME = (answers) => {
     - [License](#license)
     - [Questions](#questions)
 
-    ## Description 
+    ## Description <a name="description"></a>
     ${answers.description} 
 
-    ## Installation 
+    ## Installation <a name="installation"></a>
     ${answers.install} 
 
-    ## Usage 
+    ## Usage <a name="usage"></a>
     ${answers.usage}
 
-    ## Contribution 
+    ## Contribution <a name="contribution"></a>
     ${answers.contribution} 
 
-    ## Tests 
+    ## Tests <a name="tests"></a>
     ${answers.test} 
 
-    ## License 
+    ## License <a name="license"></a>
     This project is licensed under the ${answers.license}. 
 
-    ## Questions 
+    ## Questions <a name="questions"></a>
     For any questions, please contact [${answers.githubname}](https://github.com/${answers.githubname}) at ${answers.email}.
     `;
 };
