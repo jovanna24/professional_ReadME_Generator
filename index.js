@@ -1,8 +1,9 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require('inquirer');
-const { writeFile } = require('fs').promises;
+const fs = require('fs'); 
 
-// TODO: Create an array of questions for user input
+
+// Array of questions for user input
 const promptDev = () => {
     return inquirer.prompt([
         {
@@ -68,11 +69,54 @@ const promptDev = () => {
     ]);
 };
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+//ReadME file content
+const generateREADME = (answers) => {
+    return `
 
-// TODO: Create a function to initialize app
-function init() {}
+    # ${answers.title} 
+
+    ## Description 
+    ${answers.description} 
+
+    ## Installation 
+    ${answers.install} 
+
+    ## Usage 
+    ${answers.usage}
+
+    ## Contribution 
+    ${answers.contribution} 
+
+    ## Tests 
+    ${answers.test} 
+
+    ## License 
+    This project is licensed under the ${answers.license}. 
+
+    ## Questions 
+    For any questions, please contact [${answers.githubname}](https://github.com/${answers.githubname}) at ${answers.email}.
+    `;
+};
+
+// Function to write README file
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        if (err) {
+            console.error('Error writing to file: ', err); 
+            return;
+        }
+        console.log(`Data written to ${fileName} successfully.`);
+    });
+}
+
+// Function to initialize app
+const init = () => {
+    promptDev() 
+
+    .then((answers) => writeToFile('README.md', generateREADME(answers)))
+    .then(() => console.log('Successfully wrote to README.md')) 
+    .catch((err) => console.error(err));
+};
 
 // Function call to initialize app
 init();
