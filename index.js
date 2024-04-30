@@ -36,12 +36,6 @@ const promptDev = () => {
 
         },
         {
-            type: 'input', 
-            name: 'test',  
-            message: 'If you have written tests for your application, please provide them here.',
-
-        },
-        {
             type: 'list', 
             name: 'license',  
             message: 'Please select the appropriate license for your application.',
@@ -71,50 +65,64 @@ const promptDev = () => {
 
 //ReadME file content
 const generateREADME = (answers) => {
-    return `
+    return `# ${answers.title} 
 
-    # ${answers.title} 
+## Table of Contents 
+- [Description](#description) 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contribution](#contribution)
+- [Tests](#tests)
+- [License](#license)
+- [Questions](#questions)
 
-    ## Table of Contents 
-    - [Description](#description) 
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Contribution](#contribution)
-    - [Tests](#tests)
-    - [License](#license)
-    - [Questions](#questions)
-
-    ## Description <a name="description"></a>
+## Description <a name="description"></a>
     ${answers.description} 
 
-    ## Installation <a name="installation"></a>
+## Installation <a name="installation"></a>
     ${answers.install} 
 
-    ## Usage <a name="usage"></a>
+## Usage <a name="usage"></a>
     ${answers.usage}
 
-    ## Contribution <a name="contribution"></a>
+## Contribution <a name="contribution"></a>
     ${answers.contribution} 
 
-    ## Tests <a name="tests"></a>
+## Tests <a name="tests"></a>
     ${answers.test} 
 
-    ## License <a name="license"></a>
+## License <a name="license"></a>
     This project is licensed under the ${answers.license}. 
 
-    ## Questions <a name="questions"></a>
+## Questions <a name="questions"></a>
     For any questions, please contact [${answers.githubname}](https://github.com/${answers.githubname}) at ${answers.email}.
     `;
 };
+//Function to add additional data to README file 
+// function appendToFile(fileName, data) {
+//     fs.appendFile(fileName, data, (err)=>{
+//         if (err) {
+//             console.error('Error appending to file: ', err); 
+//             return;
+//         }
+//         console.log(`Data appended to ${fileName} successfuly.`)
+//     });
+// }
 
 // Function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
+    fs.access(fileName, fs.constants.F_OK, (err) => {
         if (err) {
             console.error('Error writing to file: ', err); 
             return;
         }
-        console.log(`Data written to ${fileName} successfully.`);
+        fs.writeFile(fileName, data, (err)=> {
+            if (err) {
+                console.error('Error writing to file: ', err); 
+                return;
+            }
+                console.log(`Data written to ${fileName} successfully.`);
+            });
     });
 }
 
